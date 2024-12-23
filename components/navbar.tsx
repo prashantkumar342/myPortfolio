@@ -97,11 +97,11 @@ export const Navbar = () => {
               <Logout />
             </Button>
           ) : (
-            <NextLink href="/login">
+            <Link href="/login">
               <Button className="w-full" color="primary" variant="shadow">
                 Login
               </Button>
-            </NextLink>
+            </Link>
           )}
         </NavbarItem>
       </NavbarContent>
@@ -128,11 +128,11 @@ export const Navbar = () => {
             </NavbarMenuItem>
           ))}
           {!isAuthenticated ? (
-            <NextLink href="/login">
+            <Link href="/login">
               <Button className="w-full" color="primary" variant="shadow">
                 Login
               </Button>
-            </NextLink>
+            </Link>
           ) : (
             <Link
               className="cursor-pointer"
