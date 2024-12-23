@@ -12,8 +12,5 @@
         "distDir": ".next"
       }
     }
-  ],
-  "commands": {
-    "build": "npm run build && npx prisma generate"
-  }
+  ]
 }
