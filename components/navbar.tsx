@@ -14,7 +14,6 @@ import { Link } from "@nextui-org/link";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
-
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon } from "@/components/icons";
@@ -122,6 +121,7 @@ export const Navbar = () => {
                 }
                 href={item.href}
                 size="lg"
+                onTouchStart={(e) => e.preventDefault()} // To ensure touch events work
               >
                 {item.label}
               </Link>
@@ -140,6 +140,7 @@ export const Navbar = () => {
               onClick={handleLogout}
               showAnchorIcon
               anchorIcon={<Logout />}
+              onTouchStart={(e) => e.preventDefault()} // To ensure touch events work
             >
               Logout
             </Link>
