@@ -24,10 +24,7 @@ const useSocket = ():
 
   useEffect(() => {
     // Conditionally set the socket URL based on the environment
-    const socketUrl =
-      process.env.NODE_ENV === "production"
-        ? process.env.SOCKET_URL
-        : "http://localhost:4000"; // Local development server URL
+    const socketUrl = "https://portfoliosocket.onrender.com";
 
     // Initialize the Socket.IO client
     socketRef.current = io(socketUrl!, {
