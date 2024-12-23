@@ -14,7 +14,6 @@ export async function POST(req: NextRequest) {
   const refreshToken = req.cookies.get("reftoken")?.value;
 
   if (!refreshToken) {
-
     return NextResponse.json(
       { message: "Refresh token missing" },
       { status: 401 }
@@ -32,7 +31,6 @@ export async function POST(req: NextRequest) {
     });
 
     if (!user || user.username !== decoded.username) {
-
       return NextResponse.json(
         { message: "Invalid token - user not found or mismatch" },
         { status: 401 }
