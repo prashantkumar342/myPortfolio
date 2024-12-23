@@ -3,10 +3,10 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "node server.mjs",
-		"build": "npx prisma generate && next build  ",
-		"start": "NODE_ENV=production node server.mjs",
-		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix",
+		"dev": "next dev", 
+		"build": "npx prisma generate && next build", 
+		"start": "next start", 
+		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix", 
 		"postinstall": "npx prisma generate"
 	},
 	"dependencies": {
