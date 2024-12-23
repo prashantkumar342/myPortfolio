@@ -23,6 +23,7 @@ import { Button } from "@nextui-org/button";
 import { Logout } from "@mui/icons-material";
 import { logoutUser } from "@/config/auth"; // Import the logout function
 import { setAuthStatus, setUser } from "@/redux/slices/globalVar"; // Import the Redux action
+import { useState } from "react";
 
 interface RootState {
   globalVar: { isAuthenticated: boolean };
@@ -30,6 +31,8 @@ interface RootState {
 
 export const Navbar = () => {
   const pathname = usePathname(); // Get the current path
+  const [navMenu, setNavMenu] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Loading state for logout button
   const { isAuthenticated } = useSelector(
     (state: RootState) => state.globalVar
   );
@@ -37,6 +40,7 @@ export const Navbar = () => {
   const router = useRouter();
 
   const handleLogout = async () => {
+    setIsLoading(true); // Set loading state to true when starting logout process
     const response = await logoutUser();
 
     if (response && response.status === 200) {
@@ -46,10 +50,11 @@ export const Navbar = () => {
     } else {
       console.error("Failed to logout");
     }
+    setIsLoading(false); // Set loading state to false once logout is complete
   };
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
+    <NextUINavbar maxWidth="xl" position="sticky" isMenuOpen={navMenu}>
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -91,16 +96,17 @@ export const Navbar = () => {
               aria-label="logout"
               color="danger"
               variant="faded"
+              isLoading={isLoading} // Show loading spinner when logging out
               onClick={handleLogout}
             >
               <Logout />
             </Button>
           ) : (
-            <Link href="/login">
+            <NextLink href="/login">
               <Button className="w-full" color="primary" variant="shadow">
                 Login
               </Button>
-            </Link>
+            </NextLink>
           )}
         </NavbarItem>
       </NavbarContent>
@@ -109,7 +115,7 @@ export const Navbar = () => {
           <GithubIcon className="text-default-500" />
         </Link>
         <ThemeSwitch />
-        <NavbarMenuToggle />
+        <NavbarMenuToggle onChange={() => setNavMenu(!navMenu)} />
       </NavbarContent>
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
@@ -121,29 +127,41 @@ export const Navbar = () => {
                 }
                 href={item.href}
                 size="lg"
-                onTouchStart={(e) => e.preventDefault()} // To ensure touch events work
+                onClick={() => setNavMenu(false)}
               >
                 {item.label}
               </Link>
             </NavbarMenuItem>
           ))}
           {!isAuthenticated ? (
-            <Link href="/login">
-              <Button className="w-full" color="primary" variant="shadow">
-                Login
-              </Button>
-            </Link>
+            <Button
+              as={Link}
+              href="/login"
+              className="w-full"
+              color="primary"
+              variant="shadow"
+              onTouchStart={(e) => e.preventDefault()} 
+              onClick={()=>setNavMenu(false)}
+            >
+              Login
+            </Button>
           ) : (
-            <Link
+            <Button
               className="cursor-pointer"
               color="danger"
-              onClick={handleLogout}
-              showAnchorIcon
-              anchorIcon={<Logout />}
-              onTouchStart={(e) => e.preventDefault()} // To ensure touch events work
+              isLoading={isLoading} // Show loading spinner when logging out
+              onClick={(e) => {
+                handleLogout();
+                e.preventDefault(); // Prevent default behavior when clicked
+                e.stopPropagation(); // Stop the event from bubbling up
+              }}
+              onTouchStart={(e) => {
+                e.preventDefault(); // Prevent default behavior on touch events
+                handleLogout(); // Call logout on touch start
+              }}
             >
               Logout
-            </Link>
+            </Button>
           )}
         </div>
       </NavbarMenu>
