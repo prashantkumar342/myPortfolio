@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { io, Socket } from "socket.io-client";
+
 import { RootState } from "@/redux/store";
 
 // Define the types for the socket events
@@ -24,10 +25,13 @@ const useSocket = ():
 
   useEffect(() => {
     // Conditionally set the socket URL based on the environment
-    const socketUrl =
-      process.env.NODE_ENV === "production"
-        ? process.env.SOCKET_URL
-        : "http://localhost:4500"; // Local development server URL
+    let socketUrl;
+    
+    if (process.env.NODE_ENV === "production") {
+      socketUrl = process.env.SOCKET_URL;
+    } else {
+      socketUrl = "http://localhost:4500";
+    }
 
     // Initialize the Socket.IO client
     socketRef.current = io(socketUrl!, {
