@@ -21,7 +21,7 @@ app.prepare().then(() => {
     cors: {
       origin: dev
         ? "http://localhost:3000"
-        : process.env.NEXT_PUBLIC_DOMAIN_URL,
+        : "https://prashantportfolio-smoky.vercel.app",
       methods: ["GET", "POST"],
       credentials: true,
     },

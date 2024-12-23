@@ -26,8 +26,9 @@ const useSocket = ():
     // Conditionally set the socket URL based on the environment
     const socketUrl =
       process.env.NODE_ENV === "production"
-        ? process.env.NEXT_PUBLIC_DOMAIN_URL
-        : "http://localhost:3000"; 
+        ? "https://prashantportfolio-smoky.vercel.app"
+        : "http://localhost:3000";
+
 
     // Initialize the Socket.IO client
     socketRef.current = io(socketUrl, {
