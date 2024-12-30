@@ -3,10 +3,10 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "next dev", 
-		"build": "npx prisma generate && next build", 
-		"start": "next start", 
-		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix", 
+		"dev": "next dev",
+		"build": "npx prisma generate && next build",
+		"start": "next start",
+		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix",
 		"postinstall": "npx prisma generate"
 	},
 	"dependencies": {
@@ -23,6 +23,7 @@
 		"@nextui-org/link": "2.2.3",
 		"@nextui-org/listbox": "2.3.3",
 		"@nextui-org/navbar": "2.2.3",
+		"@nextui-org/react": "^2.6.10",
 		"@nextui-org/snippet": "2.2.4",
 		"@nextui-org/spinner": "^2.2.4",
 		"@nextui-org/switch": "2.2.3",

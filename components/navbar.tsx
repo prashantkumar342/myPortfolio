@@ -26,14 +26,14 @@ import { setAuthStatus, setUser } from "@/redux/slices/globalVar"; // Import the
 import { useState } from "react";
 
 interface RootState {
-  globalVar: { isAuthenticated: boolean };
+  globalVar: { isAuthenticated: boolean; user: { isAdmin: boolean } };
 }
 
 export const Navbar = () => {
   const pathname = usePathname(); // Get the current path
   const [navMenu, setNavMenu] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Loading state for logout button
-  const { isAuthenticated } = useSelector(
+  const { isAuthenticated, user } = useSelector(
     (state: RootState) => state.globalVar
   );
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ export const Navbar = () => {
   };
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky" isMenuOpen={navMenu}>
+    <NextUINavbar isMenuOpen={navMenu} maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -63,22 +63,26 @@ export const Navbar = () => {
           </NextLink>
         </NavbarBrand>
         <div className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({
-                    color: pathname === item.href ? "primary" : "foreground",
-                  }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
+          {siteConfig.navItems.map(
+            (item) =>
+              (item.label !== "Admin" || user?.isAdmin) && (
+                <NavbarItem key={item.href}>
+                  <NextLink
+                    className={clsx(
+                      linkStyles({
+                        color:
+                          pathname === item.href ? "primary" : "foreground",
+                      }),
+                      "data-[active=true]:text-primary data-[active=true]:font-medium"
+                    )}
+                    color="foreground"
+                    href={item.href}
+                  >
+                    {item.label}
+                  </NextLink>
+                </NavbarItem>
+              )
+          )}
         </div>
       </NavbarContent>
       <NavbarContent
@@ -95,8 +99,8 @@ export const Navbar = () => {
               isIconOnly
               aria-label="logout"
               color="danger"
-              variant="faded"
               isLoading={isLoading} // Show loading spinner when logging out
+              variant="faded"
               onClick={handleLogout}
             >
               <Logout />
@@ -119,29 +123,34 @@ export const Navbar = () => {
       </NavbarContent>
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                className={
-                  pathname === item.href ? "text-primary" : "text-foreground"
-                }
-                href={item.href}
-                size="lg"
-                onClick={() => setNavMenu(false)}
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
+          {siteConfig.navMenuItems.map(
+            (item, index) =>
+              (item.label !== "Admin" || user?.isAdmin) && (
+                <NavbarMenuItem key={`${item}-${index}`}>
+                  <Link
+                    className={
+                      pathname === item.href
+                        ? "text-primary"
+                        : "text-foreground"
+                    }
+                    href={item.href}
+                    size="lg"
+                    onClick={() => setNavMenu(false)}
+                  >
+                    {item.label}
+                  </Link>
+                </NavbarMenuItem>
+              )
+          )}
           {!isAuthenticated ? (
             <Button
               as={Link}
-              href="/login"
               className="w-full"
               color="primary"
+              href="/login"
               variant="shadow"
-              onTouchStart={(e) => e.preventDefault()} 
-              onClick={()=>setNavMenu(false)}
+              onClick={() => setNavMenu(false)}
+              onTouchStart={(e) => e.preventDefault()}
             >
               Login
             </Button>

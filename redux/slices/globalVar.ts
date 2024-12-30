@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { User } from "../types";
@@ -20,7 +21,6 @@ const globalSlice = createSlice({
       state.isAuthenticated = actions.payload;
     },
     setUser(state, action: PayloadAction<User | null>) {
-      // Allow null as payload
       state.user = action.payload;
     },
   },

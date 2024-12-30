@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { io, Socket } from "socket.io-client";
+
 import { RootState } from "@/redux/store";
 
 // Define the types for the socket events
@@ -24,7 +25,8 @@ const useSocket = ():
 
   useEffect(() => {
     // Conditionally set the socket URL based on the environment
-    const socketUrl = "https://portfoliosocket.onrender.com";
+    // const socketUrl = "https://portfoliosocket.onrender.com";
+    const socketUrl = "http://localhost:4500";
 
     // Initialize the Socket.IO client
     socketRef.current = io(socketUrl!, {

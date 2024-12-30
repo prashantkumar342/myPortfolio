@@ -12,14 +12,9 @@ export const siteConfig = {
       label: "Gallery",
       href: "/gallery",
     },
-
     {
-      label: "Contact",
-      href: "/contact",
-    },
-    {
-      label: "About",
-      href: "/about",
+      label: "Admin",
+      href: "/admin",
     },
   ],
   navMenuItems: [
@@ -31,14 +26,9 @@ export const siteConfig = {
       label: "Gallery",
       href: "/gallery",
     },
-
     {
-      label: "Contact",
-      href: "/contact",
-    },
-    {
-      label: "About",
-      href: "/about",
+      label: "Admin",
+      href: "/admin",
     },
   ],
   links: {
