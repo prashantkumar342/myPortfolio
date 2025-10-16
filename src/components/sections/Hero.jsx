@@ -5,6 +5,7 @@ import { useScrollToSection } from "@/hooks";
 import { motion } from "framer-motion";
 import { Download, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const scrollToSection = useScrollToSection();
@@ -167,10 +168,12 @@ const Hero = () => {
                 >
                   View My Work
                 </Button>
-                <Button variant="ghost" size="lg">
-                  <Download size={18} className="mr-2" />
-                  Download CV
-                </Button>
+                <Link to={PERSONAL_INFO.cv}>
+                  <Button variant="ghost" size="lg">
+                    <Download size={18} className="mr-2" />
+                    Download CV
+                  </Button>
+                </Link>
               </motion.div>
 
               {/* Tech Stack */}

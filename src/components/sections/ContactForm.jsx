@@ -129,10 +129,10 @@ const ContactForm = () => {
                     <h4 className="text-sm font-medium text-foreground">
                       Availability
                     </h4>
-                    <p className="text-xs text-green-600 dark:text-green-400 flex items-center mt-1">
-                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-                      Available for new projects
-                    </p>
+                    <div className="text-xs text-green-600 dark:text-green-400 flex items-center mt-1">
+                      <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                      <span>Available for new projects</span>
+                    </div>
                   </div>
                 </motion.div>
               </div>

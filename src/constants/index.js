@@ -7,6 +7,7 @@ export const PERSONAL_INFO = {
   phone: "+91 78779 00904",
   linkedin: "https://linkedin.com/in/prashanttuhania",
   github: "https://github.com/prashantkumar342",
+  cv: "https://drive.google.com/file/d/1nsvzPKYRNKrN7Fl3kPTYOM9NpRdC-TRw/view?usp=drive_link",
   tagline:
     "Passionate about building scalable backends, real-time applications, and modern web solutions.",
   intro:
@@ -97,8 +98,8 @@ export const PROJECTS = [
       "Apollo GraphQL",
       "Multer",
     ],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://github.com/prashantkumar342/viawave_backend.git",
+    githubUrl: "https://github.com/prashantkumar342/viawave_backend.git",
   },
   {
     id: "administrative-world",
@@ -130,8 +131,8 @@ export const PROJECTS = [
     description:
       "A dating platform supporting instant chat, live location-based matching, and robust authentication. Designed for real-time engagement with optimized socket communication and scalability.",
     techStack: ["Node.js", "Express.js", "MongoDB", "Socket.IO", "GeoLocation"],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "",
+    githubUrl: "",
   },
 ];
 

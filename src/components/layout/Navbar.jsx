@@ -20,14 +20,14 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl"
+      className="fixed left-0 top-0 right-0 backdrop-blur-2xl z-50"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <div className="relative">
         {/* Glassy Background */}
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-xl border border-border rounded-full shadow-lg"></div>
+        {/* <div className="absolute inset-0 bg-background/80 backdrop-blur-xl  shadow-lg"></div>*/}
 
         {/* Content */}
         <div className="relative px-6 py-3">
