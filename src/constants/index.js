@@ -7,7 +7,7 @@ export const PERSONAL_INFO = {
   phone: "+91 78779 00904",
   linkedin: "https://linkedin.com/in/prashanttuhania",
   github: "https://github.com/prashantkumar342",
-  cv: "https://drive.google.com/file/d/1nsvzPKYRNKrN7Fl3kPTYOM9NpRdC-TRw/view?usp=drive_link",
+  cv: "https://drive.google.com/file/d/1R_qkMjuIOHEofQFoa3F4lDdE10OEkb0f/view?usp=drive_link",
   tagline:
     "Passionate about building scalable backends, real-time applications, and modern web solutions.",
   intro:
